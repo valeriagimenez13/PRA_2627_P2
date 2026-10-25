@@ -8,11 +8,12 @@ using namespace std;
 
 template<typename T>
 
-BusquedaBinaria(T X, vector<T> V, int ini, int fin){
+int busquedaBinaria(T X, vector<T> V, int ini, int fin){
 
         if(ini>fin){
 
                 cout<<"No se encuentra el array";
+		return -1;
 
         }else{
 
@@ -27,11 +28,11 @@ BusquedaBinaria(T X, vector<T> V, int ini, int fin){
 
                         if(V[medio]>X){
 
-                                return BusquedaBinaria(X,V,ini,medio-1);
+                                return busquedaBinaria(X,V,ini,medio-1);
 
                         }else{
 
-                                return BusquedaBinaria(X,V,medio+1,fin);
+                                return busquedaBinaria(X,V,medio+1,fin);
 
                         }
 
@@ -42,14 +43,17 @@ BusquedaBinaria(T X, vector<T> V, int ini, int fin){
 }
 
 template<typename T>
+int Partition(vector<T>& V, int ini, int fin); //vector como referencia para que ordene ESE
 
-QuickSort(vector<T> V, int ini, int fin){
+template<typename T>
+
+void quicksort(vector<T>& V, int ini, int fin){
 
         if(ini<fin){
 
                 int pivot = Partition(V, ini, fin); //partiton pone piv, en medio y devuelve su pos.
-                QuickSort(V, ini, pivot -1);//DERECHA
-                QuickSort(V, pivot+1, fin); //IZQUIERDA
+                quicksort(V, ini, pivot -1);//DERECHA
+                quicksort(V, pivot+1, fin); //IZQUIERDA
 
         }
 
@@ -57,19 +61,19 @@ QuickSort(vector<T> V, int ini, int fin){
 
 template<typename T>
 
-Partition(vector<T>, int ini, int fin){
+int Partition(vector<T>& V, int ini, int fin){
 
         T x= V[fin];
         int i = ini;
         int aux=0;
 
-        for(int j=ini; j<fin-1; i++){
+        for(int j=ini; j<fin; j++){
 
                 if(V[j]<=x){
 
                         aux=V[i];
                         V[i]=V[j];
-                        V[j]=aux
+                        V[j]=aux;
 
                         i=i+1; //i=ini que es la poscion a la que voy a cambiar, cuadno cambio -> ++
 
