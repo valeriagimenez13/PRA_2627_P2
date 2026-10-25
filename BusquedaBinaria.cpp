@@ -1,4 +1,11 @@
-BusquedaBinaria(int X, vector<int> V, int ini, int fin){
+#include<vector.h>
+#include<chrono.h>
+
+using namespace std;
+
+template<typename T>
+
+BusquedaBinaria(T X, vector<T> V, int ini, int fin){
 
 	if(ini>fin){
 
